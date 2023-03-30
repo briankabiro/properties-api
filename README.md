@@ -1,24 +1,12 @@
-# README
+#### Description
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a GraphQL API for a property management site.
 
-Things you may want to cover:
+##### How to setup the repo
 
-* Ruby version
+1. Clone the repo locally: 
+`git clone git@github.com:briankabiro/properties-api.git`
 
-* System dependencies
+2. Install the dependencies: `bundle install`
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+3. Start the server: `rails s`
