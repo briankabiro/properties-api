@@ -27,3 +27,7 @@ The API has 3 main resources:
 2. Install the dependencies: `bundle install`
 
 3. Start the server: `rails s`
+
+
+#### Running tests
+1. Run tests by running: `rspec -f d`
