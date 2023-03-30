@@ -6,6 +6,7 @@ module Mutations
       let(:name) { 'Redwood Apartments' }
       let(:description) { '5 bedroom house' }
       let(:city) { 'Nairobi' }
+      let!(:property) { Property.create(name: "Home", description: "Home", city: "London") }
 
       it 'creates a property' do
         post '/graphql', params: { query: create_property_query(name, description, city) }
@@ -15,6 +16,15 @@ module Mutations
         expect(data['name']).to eq(name)
         expect(data['description']).to eq(description)
         expect(data['city']).to eq(city)
+      end
+
+      it 'deletes a property' do
+        post '/graphql', params: { query: delete_property_query(id: Property.first.id) }
+        json = JSON.parse(response.body)
+        data = json['data']['deleteProperty']
+
+        expect(response.status).to eq 200
+        expect(data['name']).to eq(property.name)
       end
     end
   
@@ -36,5 +46,19 @@ module Mutations
         }
       GQL
     end 
+
+    def delete_property_query(id:)
+      <<~GQL
+        mutation {
+          deleteProperty(input: {
+            id: #{id}
+          }) {
+            name
+            description
+            city
+          }
+        }
+      GQL
+    end
   end
 end
